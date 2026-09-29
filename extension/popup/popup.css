@@ -1,0 +1,122 @@
+/* Extension Popup Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 320px;
+  font-family: system-ui, -apple-system, sans-serif;
+  background-color: #0f172a;
+  color: #f8fafc;
+  padding: 0.75rem;
+  direction: rtl;
+}
+
+.popup-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.popup-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 0.6rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.brand .logo {
+  font-size: 1.5rem;
+}
+
+.brand h2 {
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.brand h2 span {
+  color: #38bdf8;
+}
+
+.brand p {
+  font-size: 0.7rem;
+  color: #94a3b8;
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 6px #10b981;
+}
+
+.popup-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.form-group label {
+  font-size: 0.78rem;
+  color: #cbd5e1;
+  font-weight: 600;
+}
+
+select {
+  background: #1e293b;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  color: white;
+  padding: 0.45rem;
+  font-size: 0.82rem;
+  outline: none;
+}
+
+.toggle-group {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tip-card {
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  border-radius: 6px;
+  padding: 0.5rem;
+  font-size: 0.73rem;
+  line-height: 1.4;
+  color: #c7d2fe;
+}
+
+.btn-dashboard {
+  width: 100%;
+  background: linear-gradient(135deg, #6366f1, #38bdf8);
+  border: none;
+  border-radius: 6px;
+  color: white;
+  padding: 0.55rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btn-dashboard:hover {
+  opacity: 0.9;
+}
