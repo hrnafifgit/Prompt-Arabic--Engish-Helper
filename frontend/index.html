@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PromptCraft AI — منصة هندسة الأوامر الذكية</title>
+  <meta name="description" content="محرك الوساطة الذكي لهندسة وترجمة الأوامر من العربية إلى الإنجليزية مع الحفاظ على مخرجات عربية فائقة الدقة">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Background Glow FX -->
+  <div class="glow-bg glow-1"></div>
+  <div class="glow-bg glow-2"></div>
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="container header-container">
+      <div class="brand">
+        <div class="brand-logo">🧠</div>
+        <div class="brand-text">
+          <h1>PromptCraft <span class="gradient-text">AI</span></h1>
+          <p class="tagline">محرك الوساطة الذكي لهندسة وترجمة الأوامر (Arabic-to-English AI Middleware)</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <span class="badge status-badge" id="api-status">
+          <span class="dot"></span>
+          الخادم متصل
+        </span>
+        <button class="btn btn-secondary btn-sm" id="btn-load-sample">
+          ✨ تجربة نموذج فلاتر
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container main-layout">
+    
+    <!-- Controls Bar -->
+    <section class="controls-card">
+      <div class="control-group">
+        <label for="domain-select">المجال المستهدف (Domain):</label>
+        <select id="domain-select" class="custom-select">
+          <option value="auto">🎯 اكتشاف تلقائي للنية (Auto-Detect)</option>
+          <option value="software_engineering">💻 تطوير البرمجيات وهندسة الكود</option>
+          <option value="data_science_ai">📊 علم البيانات والذكاء الاصطناعي</option>
+          <option value="cybersecurity">🛡️ الأمن السيبراني واختبار الاختراق</option>
+          <option value="academic_research">🎓 البحث الأكاديمي والجامعي</option>
+          <option value="creative_writing">✍️ الكتابة الإبداعية وصناعة المحتوى</option>
+          <option value="general">🌐 استشارات عامة وحل مشكلات</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label for="framework-select">إطار هندسة البرومبت:</label>
+        <select id="framework-select" class="custom-select">
+          <option value="CO-STAR">🌟 CO-STAR Framework (الأكثر شمولاً)</option>
+          <option value="CRISPE">⚡ CRISPE Framework (التركيز على الدور والمهمة)</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label for="provider-select">مزود المعالجة:</label>
+        <select id="provider-select" class="custom-select">
+          <option value="gemini">Google Gemini (موصى به)</option>
+          <option value="openai">OpenAI (GPT-4o)</option>
+          <option value="mock">محاكي ذكي محلي (Offline Mode)</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Side-by-Side Playground -->
+    <section class="playground-grid">
+      
+      <!-- Input Panel (Arabic) -->
+      <div class="card panel-card input-panel">
+        <div class="panel-header">
+          <div class="panel-title">
+            <span class="icon">✏️</span>
+            <h3>المدخل العربي (المستخدم)</h3>
+          </div>
+          <span class="panel-badge">Arabic Raw Input</span>
+        </div>
+        
+        <div class="panel-body">
+          <textarea 
+            id="arabic-input" 
+            placeholder="اكتب فكرتك أو طلبك باللغة العربية (سواء عامية أو مختصرة أو تقنية)... مثال: سوي لي كود فلاتر يربط مع الفايربيس للتحقق من هوية المستخدم برقم الهاتف"
+            rows="9"
+          ></textarea>
+        </div>
+
+        <div class="panel-footer">
+          <div class="character-count" id="char-counter">0 حرف</div>
+          <button class="btn btn-primary" id="btn-optimize">
+            <span class="btn-icon">⚡</span>
+            <span>هندسة وتحسين البرومبت</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Output Panel (Optimized English Prompt) -->
+      <div class="card panel-card output-panel">
+        <div class="panel-header">
+          <div class="panel-title">
+            <span class="icon">🚀</span>
+            <h3>البرومبت الإنجليزي المعزز المهندس</h3>
+          </div>
+          <div class="panel-meta">
+            <span class="badge info-badge" id="detected-domain-badge">المجال: لم يُحدد بعد</span>
+          </div>
+        </div>
+
+        <div class="panel-body">
+          <div class="output-container" dir="ltr">
+            <pre><code id="english-output" class="language-markdown">// انقر على زر "هندسة وتحسين البرومبت" لعرض البرومبت الإنجليزي المهيكل هنا...</code></pre>
+          </div>
+        </div>
+
+        <div class="panel-footer">
+          <div class="meta-stats" id="meta-stats">
+            <span id="speed-stat">⏱️ وقت المعالجة: -</span>
+          </div>
+          <div class="action-buttons">
+            <button class="btn btn-secondary btn-sm" id="btn-copy">
+              📋 نسخ البرومبت
+            </button>
+            <button class="btn btn-accent btn-sm" id="btn-execute">
+              🤖 تجربة البرومبت الآن
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Execution Results Section -->
+    <section class="card execution-card" id="execution-card" style="display: none;">
+      <div class="panel-header">
+        <div class="panel-title">
+          <span class="icon">💬</span>
+          <h3>مخرجات النموذج الهدف (تفكير إنجليزي عميق + مخرج عربي)</h3>
+        </div>
+        <span class="badge success-badge">Target LLM Output</span>
+      </div>
+      <div class="panel-body">
+        <div class="execution-output" id="execution-output">
+          <!-- Live LLM Response goes here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Preset Samples Gallery -->
+    <section class="samples-section">
+      <h3 class="section-title">💡 أمثلة وحالات دراسية جاهزة للاختبار (Presets)</h3>
+      <div class="samples-grid" id="samples-grid">
+        <!-- Loaded via JS -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <div class="container footer-container">
+      <p>© 2026 <strong>PromptCraft AI</strong> — مشروع تخرج جامعي متميز (Level Four Project).</p>
+      <div class="footer-links">
+        <a href="/docs" target="_blank">مستندات الـ API (Swagger)</a>
+        <span>•</span>
+        <a href="https://github.com/hrnafifgit/Prompt-Arabic--Engish-Helper" target="_blank">المستودع على GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Notification Toast -->
+  <div id="toast" class="toast"></div>
+
+  <!-- Script -->
+  <script src="app.js"></script>
+</body>
+</html>
