@@ -1,0 +1,59 @@
+/* PromptCraft AI Floating Injector Button Styles */
+
+.promptcraft-floating-btn {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  z-index: 99999;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #6366f1, #38bdf8);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+  padding: 6px 14px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+  transition: all 0.2s ease-in-out;
+  user-select: none;
+}
+
+.promptcraft-floating-btn:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6);
+}
+
+.promptcraft-floating-btn:active {
+  transform: translateY(0);
+}
+
+.promptcraft-floating-btn.loading {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.promptcraft-toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #1e293b;
+  color: #f8fafc;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 100000;
+  direction: rtl;
+  animation: promptcraft-slide-in 0.3s ease-out;
+}
+
+@keyframes promptcraft-slide-in {
+  from { transform: translateX(100px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
