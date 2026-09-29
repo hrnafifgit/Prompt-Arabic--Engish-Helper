@@ -1,6 +1,12 @@
-import os
+from pathlib import Path
 from typing import List
+from dotenv import load_dotenv
 from pydantic_settings import BaseSettings
+
+# Load environment variables from backend/.env or root .env
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+load_dotenv(BASE_DIR / ".env")
+load_dotenv(BASE_DIR.parent / ".env")
 
 
 class Settings(BaseSettings):
@@ -14,18 +20,18 @@ class Settings(BaseSettings):
     ALLOWED_ORIGINS: str = "*"
 
     # LLM Settings
-    DEFAULT_OPTIMIZER_PROVIDER: str = "gemini"  # "gemini", "openai", "mock"
+    DEFAULT_OPTIMIZER_PROVIDER: str = "gemini"
     DEFAULT_TARGET_PROVIDER: str = "gemini"
 
     # API Keys
-    GEMINI_API_KEY: str = os.getenv("GEMINI_API_KEY", "")
-    GEMINI_MODEL: str = os.getenv("GEMINI_MODEL", "gemini-1.5-flash")
+    GEMINI_API_KEY: str = ""
+    GEMINI_MODEL: str = "gemini-flash-latest"
 
-    OPENAI_API_KEY: str = os.getenv("OPENAI_API_KEY", "")
-    OPENAI_MODEL: str = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
+    OPENAI_API_KEY: str = ""
+    OPENAI_MODEL: str = "gpt-4o-mini"
 
-    ANTHROPIC_API_KEY: str = os.getenv("ANTHROPIC_API_KEY", "")
-    ANTHROPIC_MODEL: str = os.getenv("ANTHROPIC_MODEL", "claude-3-5-sonnet-20241022")
+    ANTHROPIC_API_KEY: str = ""
+    ANTHROPIC_MODEL: str = "claude-3-5-sonnet-20241022"
 
     @property
     def cors_origins(self) -> List[str]:
