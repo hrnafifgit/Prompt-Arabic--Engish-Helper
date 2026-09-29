@@ -1,0 +1,37 @@
+{
+  "manifest_version": 3,
+  "name": "PromptCraft AI — مهندس الأوامر الذكي",
+  "version": "1.0.0",
+  "description": "تحسين وترجمة أوامر الذكاء الاصطناعي من العربية إلى الإنجليزية تلقائياً مع الحفاظ على مخرجات عربية فائقة الدقة",
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "http://localhost:8000/*",
+    "https://chatgpt.com/*",
+    "https://chat.openai.com/*",
+    "https://claude.ai/*",
+    "https://gemini.google.com/*"
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "PromptCraft AI"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chatgpt.com/*",
+        "https://chat.openai.com/*",
+        "https://claude.ai/*",
+        "https://gemini.google.com/*"
+      ],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}
