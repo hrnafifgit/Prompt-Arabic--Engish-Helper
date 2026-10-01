@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  promptcraft-ai:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: promptcraft-ai:latest
+    container_name: promptcraft_ai_server
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - APP_NAME=PromptCraft AI
+      - APP_ENV=production
+      - HOST=0.0.0.0
+      - PORT=8000
+      - DEBUG=false
+      - ALLOWED_ORIGINS=*
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+    env_file:
+      - ./backend/.env
