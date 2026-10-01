@@ -91,14 +91,24 @@
       btn.innerHTML = `<span>⏳</span><span>جاري التحسين...</span>`;
 
       try {
-        // Send request to background script or directly to backend API
-        const response = await fetch("http://localhost:8000/api/v1/prompt/optimize", {
+        const config = await new Promise((resolve) => {
+          chrome.storage.sync.get(["serverUrl", "preferredDomain", "preferredFramework"], (res) => {
+            resolve({
+              serverUrl: (res.serverUrl || "http://localhost:8000").replace(/\/+$/, ""),
+              domain: res.preferredDomain || "auto",
+              framework: res.preferredFramework || "CO-STAR"
+            });
+          });
+        });
+
+        // Send request directly to backend API
+        const response = await fetch(`${config.serverUrl}/api/v1/prompt/optimize`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             prompt: rawText,
-            domain: "auto",
-            framework: "CO-STAR"
+            domain: config.domain,
+            framework: config.framework
           })
         });
 
@@ -111,7 +121,7 @@
         showToast(`🎉 تم تعزيز البرومبت بنجاح! (${data.domain_name_ar})`);
       } catch (err) {
         console.error("PromptCraft Optimization Error:", err);
-        showToast("⚠️ تعذر الاتصال بالخادم، تأكد من تشغيل backend FastAPI!");
+        showToast("⚠️ تعذر الاتصال بالخادم السحابي/المحلي. تحقق من الرابط في الإضافة!");
       } finally {
         btn.classList.remove("loading");
         btn.innerHTML = `<span>⚡</span><span>PromptCraft AI</span>`;

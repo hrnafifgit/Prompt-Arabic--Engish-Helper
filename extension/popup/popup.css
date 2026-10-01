@@ -78,7 +78,9 @@ body {
   font-weight: 600;
 }
 
-select {
+select,
+input[type="url"],
+input[type="text"] {
   background: #1e293b;
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 6px;

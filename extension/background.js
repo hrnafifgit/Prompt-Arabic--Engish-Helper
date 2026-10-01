@@ -14,13 +14,23 @@ chrome.runtime.onInstalled.addListener(() => {
 chrome.contextMenus.onClicked.addListener(async (info, tab) => {
   if (info.menuItemId === "promptcraft-optimize-selection" && info.selectionText) {
     try {
-      const response = await fetch("http://localhost:8000/api/v1/prompt/optimize", {
+      const config = await new Promise((resolve) => {
+        chrome.storage.sync.get(["serverUrl", "preferredDomain", "preferredFramework"], (res) => {
+          resolve({
+            serverUrl: (res.serverUrl || "http://localhost:8000").replace(/\/+$/, ""),
+            domain: res.preferredDomain || "auto",
+            framework: res.preferredFramework || "CO-STAR"
+          });
+        });
+      });
+
+      const response = await fetch(`${config.serverUrl}/api/v1/prompt/optimize`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           prompt: info.selectionText,
-          domain: "auto",
-          framework: "CO-STAR"
+          domain: config.domain,
+          framework: config.framework
         })
       });
 
